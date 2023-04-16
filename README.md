@@ -1,7 +1,7 @@
 # Passport Laravel
 
 ## Uso
-Temos projetos Laravel: consumer e provider. O Provider tem o passport com como autenticação, o Consumer é utilizado para pedir acesso ao Provider. Cada um rodará em porta separada.
+Temos dois projetos Laravel: consumer e provider. O Provider tem o passport com como autenticação, o Consumer é utilizado para pedir acesso ao Provider. Cada um rodará em porta separada.
 
 Para o Consumer:
 ````
