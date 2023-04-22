@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/teste', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::middleware('client')->get('/teste-rotina', function (Request $request) {
     return response()->json([
-        'message' => 'Exemplo de mensagem somente vista autenticado.'
+        'message' => 'Exemplo de rota que é uma rotina que executa.'
     ], 200);
 });

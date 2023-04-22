@@ -19,12 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/redirect', function (Request $request) {
+Route::get('/loginIntoAnotherApp', function (Request $request) {
     $request->session()->put('state', $state = Str::random(40));
     $urlProvider = env('APP_URL_PROVIDER');
 
     $query = http_build_query([
-        'client_id' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_ID'),
+        'client_id' => env('PASSPORT_CLIENT_ID'),
         'redirect_uri' => route('callback'),
         'response_type' => 'code',
         'scope' => '',
@@ -48,8 +48,8 @@ Route::get('/callback', function (Request $request) {
     $response = $http->post("$urlProvider/oauth/token", [
         'form_params' => [
             'grant_type' => 'authorization_code',
-            'client_id' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_ID'),
-            'client_secret' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET'),
+            'client_id' => env('PASSPORT_CLIENT_ID'),
+            'client_secret' => env('PASSPORT_CLIENT_SECRET'),
             'redirect_uri' => route('callback'),
             'code' => $request->code,
         ],
@@ -58,7 +58,7 @@ Route::get('/callback', function (Request $request) {
     $result = json_decode((string) $response->getBody(), true);
     $accessToken = $result['access_token'];
 
-    $response = $http->get("$urlProvider/api/teste", [
+    $response = $http->get("$urlProvider/api/user", [
         'headers' => [
             'Authorization' => "Bearer $accessToken",
             'Accept'     => 'application/json',
