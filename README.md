@@ -1,7 +1,7 @@
 # Passport Laravel
 
 ## Uso com oauth
-Temos projetos Laravel: consumer e provider. O Provider tem o passport como autorização, o Consumer é utilizado para pedir acesso ao Provider. Cada um rodará em porta separada.
+Temos dois projetos Laravel: consumer e provider. O Provider tem o passport como autorização, o Consumer é utilizado para pedir acesso ao Provider. Cada um rodará em porta separada.
 
 Para o Consumer:
 ````
@@ -109,7 +109,7 @@ Para receber o token somente com client id e secret sem ter usuário e senha: PO
 	"grant_type" : "client_credentials",
 	"client_id" : "",
 	"client_secret" : "",
-    "scope": ""
+	"scope": ""
 }
 //Depois requiste para
 GET /api/teste-rotina
